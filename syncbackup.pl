@@ -4,7 +4,7 @@
 my $SYNCDIR = "/sbbs";
 my $BACKUPDIR = "/root/backups";
 my $TARCMD = "/bin/tar czf";
-my $VERSION = "1.0";
+my $VERSION = "1.1";
 
 #-------------------
 # No changes below here...
@@ -41,6 +41,6 @@ if (-f "$BACKUPDIR/syncbackup-1.tgz")
 	rename("$BACKUPDIR/syncbackup-1.tgz", "$BACKUPDIR/syncbackup-2.tgz");
 }
 print "Done\nCreating Backup: ";
-system("$TARCMD $BACKUPDIR/syncbackup-1.tgz $SYNCDIR");
+system("$TARCMD $BACKUPDIR/syncbackup-1.tgz $SYNCDIR --exclude='/sbbs/ctrl/localspy*.sock' --exclude='/sbbs/ctrl/status.sock'");
 print("Done!\n");
 exit 0;

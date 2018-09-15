@@ -1,4 +1,4 @@
-# SyncBackup - backup script for the Synchronet BBS (1.0)
+# SyncBackup - backup script for the Synchronet BBS (1.1)
 Creates a hot backup of your Synchronet BBS installation.
 
 Official support sites: [Official Github Repo](https://github.com/fstltna/SyncBackup) - [Official Forum](https://synchronetbbs.org/index.php/forum/syncbackup) ![Synchronet Logo](https://SynchronetBBS.org/SynchronetLogo.png) 

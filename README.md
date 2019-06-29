@@ -17,4 +17,5 @@ Official support sites: [Official Github Repo](https://github.com/fstltna/SyncBa
 
 6. This will back up your SBBS installation at 1:01am each day, and keep the last 5 backups.
 
-If you need more help visit https://SynchronetBBS.org/
+If you need more help visit https://SynchronetBBS.org/ and check out this website: https://superuser.com/questions/555799/how-to-setup-rsync-without-password-with-ssh-on-unix-linux
+

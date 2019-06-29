@@ -7,11 +7,12 @@ Official support sites: [Official Github Repo](https://github.com/fstltna/SyncBa
 
 ---
 
-1. Edit the settings at the top of syncbackup.pl if needed
-2. create a cron job like this:
+1. Make sure sshpass is installed: "apt install sshpass"
+2. Edit the settings at the top of syncbackup.pl if needed
+3. create a cron job like this:
 
         1 1 * * * /root/SyncBackup/syncbackup.pl
 
-3. This will back up your SBBS installation at 1:01am each day, and keep the last 5 backups.
+4. This will back up your SBBS installation at 1:01am each day, and keep the last 5 backups.
 
 If you need more help visit https://SynchronetBBS.org/

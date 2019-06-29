@@ -7,12 +7,14 @@ Official support sites: [Official Github Repo](https://github.com/fstltna/SyncBa
 
 ---
 
-1. Make sure sshpass is installed: "apt install sshpass"
-2. Edit the settings at the top of syncbackup.pl if needed
-3. create a cron job like this:
+1. Make sure ssh-keygen is installed: "apt install ssh-keygen"
+2. Run "ssh-keygen" and when asked for the password just press enter twice
+3. Run "ssh-copy-id -i ~/.ssh/id_rsa.pub your-destination-server" - This will ask you for your remote password. This is normal.
+4. Edit the settings at the top of syncbackup.pl if needed
+5. create a cron job like this:
 
         1 1 * * * /root/SyncBackup/syncbackup.pl
 
-4. This will back up your SBBS installation at 1:01am each day, and keep the last 5 backups.
+6. This will back up your SBBS installation at 1:01am each day, and keep the last 5 backups.
 
 If you need more help visit https://SynchronetBBS.org/

@@ -115,8 +115,8 @@ if ($BACKUPSERVER ne "")
 {
 	print "Offsite backup requested\n";
 	print "Copying $BACKUPDIR/syncbackup-1.tgz to $BACKUPSERVER:$BACKUPPORT\n";
-	PrintDebugCommand("rsync -avz -e ssh $BACKUPDIR/syncbackup-1.tgz $BACKUPUSER\@$BACKUPSERVER:$BACKUPPATH\n");
-	system ("rsync -avz -e ssh $BACKUPDIR/syncbackup-1.tgz $BACKUPUSER\@$BACKUPSERVER:$BACKUPPATH");
+	PrintDebugCommand("rsync -avz -P -e ssh $BACKUPDIR/syncbackup-1.tgz $BACKUPUSER\@$BACKUPSERVER:$BACKUPPATH\n");
+	system ("rsync -avz -P -e ssh $BACKUPDIR/syncbackup-1.tgz $BACKUPUSER\@$BACKUPSERVER:$BACKUPPATH");
 }
 
 print("Done!\n");

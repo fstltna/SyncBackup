@@ -4,7 +4,7 @@
 my $SYNCDIR = "/sbbs";
 my $BACKUPDIR = "/root/backups";
 my $TARCMD = "/bin/tar czf";
-my $VERSION = "2.0";
+my $VERSION = "2.1";
 
 # Init file data
 my $MySettings = "$ENV{'HOME'}/.sbackuprc";
@@ -110,7 +110,7 @@ if (-f "$BACKUPDIR/syncbackup-1.tgz")
 	rename("$BACKUPDIR/syncbackup-1.tgz", "$BACKUPDIR/syncbackup-2.tgz");
 }
 print "Done\nCreating Backup: ";
-system("$TARCMD $BACKUPDIR/syncbackup-1.tgz $SYNCDIR --exclude='/sbbs/ctrl/localspy*.sock' --exclude='/sbbs/ctrl/status.sock'");
+system("$TARCMD $BACKUPDIR/syncbackup-1.tgz --exclude='/sbbs/ctrl/localspy*.sock' --exclude='/sbbs/ctrl/status.sock' $SYNCDIR");
 if ($BACKUPSERVER ne "")
 {
 	print "Offsite backup requested\n";

@@ -4,7 +4,7 @@
 my $SYNCDIR = "/sbbs";
 my $BACKUPDIR = "/root/backups";
 my $TARCMD = "/bin/tar czf";
-my $VERSION = "2.1";
+my $VERSION = "2.2";
 
 # Init file data
 my $MySettings = "$ENV{'HOME'}/.sbackuprc";
@@ -13,10 +13,20 @@ my $BACKUPPASS = "";
 my $BACKUPSERVER = "";
 my $BACKUPPATH = "";
 my $DEBUG_MODE = "off";
+my $FILEEDITOR = $ENV{EDITOR};
+my $DOSNAPSHOT = 0;
 
 #-------------------
 # No changes below here...
 #-------------------
+
+if ($FILEEDITOR eq "")
+{
+        $FILEEDITOR = "/usr/bin/nano";
+}
+
+# Get if they said a option
+my $CMDOPTION = shift;
 
 sub ReadConfigFile
 {
@@ -77,10 +87,45 @@ sub PrintDebugCommand
 	my $entered = <STDIN>;
 }
 
+if ((defined $CMDOPTION) && ($CMDOPTION eq "-snapshot"))
+{
+        $DOSNAPSHOT = -1;
+}
+
 ReadConfigFile();
 
 print "SyncBackup - back up your Synchronet BBS - version $VERSION\n";
-print "======================================================\n";
+print "=========================================================\n";
+if ($DOSNAPSHOT == -1)
+{
+        print "Running Manual Snapshot\n";
+}
+
+if (defined $CMDOPTION)
+{
+        if ($CMDOPTION ne "-snapshot")
+        {
+                print "Unknown command line option: '$CMDOPTION'\nOnly allowed option is '-snapshot'\n";
+                exit 0;
+        }
+}
+
+sub SnapShotFunc
+{
+        print "Backing up SBBS files: ";
+        if (-f "$BACKUPDIR/snapshot.tgz")
+        {
+                unlink("$BACKUPDIR/snapshot.tgz");
+        }
+        system("$TARCMD $BACKUPDIR/snapshot.tgz $SYNCDIR > /dev/null 2>\&1");
+        print "\nBackup Completed.\n";
+}
+
+if ($DOSNAPSHOT == -1)
+{
+        SnapShotFunc();
+        exit 0;
+}
 
 if (! -d $BACKUPDIR)
 {

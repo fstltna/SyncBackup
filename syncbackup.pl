@@ -4,7 +4,7 @@
 my $SYNCDIR = "/sbbs";
 my $BACKUPDIR = "/root/backups";
 my $TARCMD = "/bin/tar czf";
-my $VERSION = "2.2";
+my $VERSION = "2.3";
 
 # Init file data
 my $MySettings = "$ENV{'HOME'}/.sbackuprc";

@@ -13,8 +13,18 @@ my $BACKUPPASS = "";
 my $BACKUPSERVER = "";
 my $BACKUPPATH = "";
 my $DEBUG_MODE = "off";
+<<<<<<< HEAD
+my $MyEditor = $ENV{'EDITOR'};
+if ($MyEditor eq "")
+{
+	$MyEditor = "/bin/nano";
+}
+
+
+=======
 my $FILEEDITOR = $ENV{EDITOR};
 my $DOSNAPSHOT = 0;
+>>>>>>> 06a673bcfabcfc74d6574068357b1ebb2e7f75e7
 
 #-------------------
 # No changes below here...
@@ -72,6 +82,9 @@ sub ReadConfigFile
 		print $FH "backuppath=\n";
 		print $FH "debugmode=off\n";
 		close($FH);
+		system("$MyEditor $MySettings");
+		print "Settings saved - please rerun backup\n";
+		exit 0;
 	}
 }
 
@@ -127,6 +140,24 @@ if ($DOSNAPSHOT == -1)
         exit 0;
 }
 
+# Get if they said a option
+my $CMDOPTION = shift;
+if (defined $CMDOPTION)
+{
+        if ($CMDOPTION ne "-prefs")
+        {
+                print "Unknown command line option: '$CMDOPTION'\nOnly allowed option is '-prefs'\n";
+                exit 0;
+        }
+}
+
+if ($CMDOPTION ne "")
+{
+	system("$MyEditor $MySettings");
+	print "Settings saved - please rerun backup\n";
+	exit 0;
+}
+
 if (! -d $BACKUPDIR)
 {
 	print "Backup dir $BACKUPDIR not found, creating...\n";
@@ -134,7 +165,7 @@ if (! -d $BACKUPDIR)
 }
 print "Moving existing backups: ";
 
-if (-f "$BACKUPDIR/citbackup-5.tgz")
+if (-f "$BACKUPDIR/syncbackup-5.tgz")
 {
 	unlink("$BACKUPDIR/syncbackup-5.tgz")  or warn "Could not unlink $BACKUPDIR/syncbackup-5.tgz: $!";
 }

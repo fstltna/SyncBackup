@@ -13,27 +13,17 @@ my $BACKUPPASS = "";
 my $BACKUPSERVER = "";
 my $BACKUPPATH = "";
 my $DEBUG_MODE = "off";
-<<<<<<< HEAD
 my $MyEditor = $ENV{'EDITOR'};
 if ($MyEditor eq "")
 {
 	$MyEditor = "/bin/nano";
 }
-
-
-=======
-my $FILEEDITOR = $ENV{EDITOR};
 my $DOSNAPSHOT = 0;
->>>>>>> 06a673bcfabcfc74d6574068357b1ebb2e7f75e7
+my $EditPrefs = "";
 
 #-------------------
 # No changes below here...
 #-------------------
-
-if ($FILEEDITOR eq "")
-{
-        $FILEEDITOR = "/usr/bin/nano";
-}
 
 # Get if they said a option
 my $CMDOPTION = shift;
@@ -100,9 +90,12 @@ sub PrintDebugCommand
 	my $entered = <STDIN>;
 }
 
-if ((defined $CMDOPTION) && ($CMDOPTION eq "-snapshot"))
+if (defined $CMDOPTION)
 {
-        $DOSNAPSHOT = -1;
+	if ($CMDOPTION eq "-snapshot")
+	{
+		$DOSNAPSHOT = -1;
+	}
 }
 
 ReadConfigFile();
@@ -116,11 +109,17 @@ if ($DOSNAPSHOT == -1)
 
 if (defined $CMDOPTION)
 {
-        if ($CMDOPTION ne "-snapshot")
+        if (($CMDOPTION ne "-snapshot") && ($CMDOPTION ne "-prefs"))
         {
-                print "Unknown command line option: '$CMDOPTION'\nOnly allowed option is '-snapshot'\n";
+                print "Unknown command line option: '$CMDOPTION'\nOnly allowed options are '-snapshot' and '-prefs'\n";
                 exit 0;
         }
+	if ($CMDOPTION eq "-prefs")
+	{
+		system("$MyEditor $MySettings");
+                print "Settings saved - please rerun backup\n";
+                exit 0;
+	}
 }
 
 sub SnapShotFunc

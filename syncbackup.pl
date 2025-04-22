@@ -189,7 +189,7 @@ system("$TARCMD $BACKUPDIR/syncbackup-1.tgz --exclude='/sbbs/ctrl/localspy*.sock
 if ($BACKUPSERVER ne "")
 {
 	print "Offsite backup requested\n";
-	print "Copying $BACKUPDIR/syncbackup-1.tgz to $BACKUPSERVER:$BACKUPPORT\n";
+	print "Copying $BACKUPDIR/syncbackup-1.tgz to $BACKUPSERVER\n";
 	PrintDebugCommand("rsync -avz -e ssh $BACKUPDIR/syncbackup-1.tgz $BACKUPUSER\@$BACKUPSERVER:$BACKUPPATH\n");
 	system ("rsync -avz -e ssh $BACKUPDIR/syncbackup-1.tgz $BACKUPUSER\@$BACKUPSERVER:$BACKUPPATH");
 }

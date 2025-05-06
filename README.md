@@ -13,7 +13,7 @@ Official support sites: [Official Github Repo](https://github.com/fstltna/SyncBa
 4. Run "syncbackup -prefs" and update the backup fields
 5. create a cron job like this:
 
-        1 1 * * * /root/SyncBackup/syncbackup.pl > /dev/null 2>&1
+        1 1 * * * /home/bbsowner/SyncBackup/syncbackup.pl > /dev/null 2>&1
 
 6. This will back up your SBBS installation at 1:01am each day, and keep the last 5 backups.
 
